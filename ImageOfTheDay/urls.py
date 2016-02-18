@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^image/$','ImageOfTheDay.views.upload_image_data'),
     url(r'^imageofthedayjson/$','ImageOfTheDay.views.image_of_the_day'),
     url(r'^get_request/$','ImageOfTheDay.views.get_request'),
+    url(r'^post_request/$','ImageOfTheDay.views.post_request'),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

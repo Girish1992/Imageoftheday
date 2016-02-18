@@ -10,6 +10,9 @@ from django.shortcuts import render
 
 # Create your views here.
 
+developer_team = {"9404505206" : {"first_name": "Nikhil", "last_name": "Rane", "mobile_no": 9404505206, "email": "nikhilrane1992@gmail.com", "designation": "Software Developer and Trainer", "company_name": "Sahaj Academy Edutech LLP"}}
+
+
 def image_of_the_day(request):
 	image=ImageOfTheDay.objects.all()
 	imageList=[]
@@ -38,4 +41,13 @@ def upload_image_data(request):
 
 def get_request(request):
 	obj = {"first_name": "Nikhil", "last_name": "Rane", "mobile_no": 9404505206, "email": "nikhilrane1992@gmail.com", "designation": "Software Developer and Trainer", "company_name": "Sahaj Academy Edutech LLP"}
-	return HttpResponse(json.dumps({"imageList": imageList}), content_type="application/json")
+	return HttpResponse(json.dumps({"obj": obj,  "status": True}), content_type="application/json")
+
+def post_request(request):
+	data_dictonary = json.loads(request.body)
+	mobile_no = data_dictonary['mobile_no']
+	try:
+		obj = developer_team[mobile_no]
+	except Exception, e:
+		return HttpResponse(json.dumps({"validation": "Entry not found..!!", "status": False}), content_type="application/json")
+	return HttpResponse(json.dumps({"obj": obj, "status": True}), content_type="application/json")
