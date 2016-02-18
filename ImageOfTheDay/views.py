@@ -36,3 +36,6 @@ def upload_image_data(request):
 	else:
 		return render_to_response('imageoftheday.html')
 
+def get_request(request):
+	obj = {"first_name": "Nikhil", "last_name": "Rane", "mobile_no": 9404505206, "email": "nikhilrane1992@gmail.com", "designation": "Software Developer and Trainer", "company_name": "Sahaj Academy Edutech LLP"}
+	return HttpResponse(json.dumps({"imageList": imageList}), content_type="application/json")
